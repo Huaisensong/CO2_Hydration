@@ -4,7 +4,7 @@ This repository contains supplementary data supporting the findings of the paper
 
 # Contents
 - **Analysis_scripts**: Code for calculating the data presented in the manuscript.
-- **Input_files**: Input files, structures, and submission scripts for well-tempered metadynamics simulations.
+- **Input_files**: Input files and structures for well-tempered metadynamics simulations.
 - **Models**: The machine-learned potentials used in this study.
 
 # Software and Versions
