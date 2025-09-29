@@ -1,6 +1,6 @@
 # Supplementary data for 'Nanoconfinement Enables a Three-Orders-of-Magnitude Acceleration of CO₂ Hydration'
 
-This repository contains supplementary data supporting the findings of the paper: 'Nanoconfinement Enables a Three-Orders-of-Magnitude Acceleration of CO₂ Hydration' - Huaisen Song, Yongfei Yang,* Jinlei Wang, Jie Liu, Lei Zhang, Hai Sun, Junjie Zhong, Kai Zhang, Jun Yao.
+This repository contains supplementary data supporting the findings of the paper: 'Nanoconfinement Enables a Three-Orders-of-Magnitude Acceleration of CO₂ Hydration' - Huaisen Song, Yongfei Yang,* Jinlei Wang, Jie Liu, Yingwen Li, Lei Zhang, Hai Sun, Junjie Zhong, Kai Zhang, Jun Yao.
 
 # Contents
 - **Analysis_scripts**: Code for calculating the data presented in the manuscript.
