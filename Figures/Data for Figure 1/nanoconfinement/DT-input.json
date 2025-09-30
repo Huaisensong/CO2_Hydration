@@ -1,0 +1,130 @@
+{
+  "_comment1": " model parameters",
+  "model": {
+    "type_map": [
+      "C",
+      "O",
+      "H"
+    ],
+    "descriptor": {
+      "type": "se_atten_v2",
+      "sel": "auto:1.1",
+      "rcut_smth": 0.50,
+      "rcut": 8.00,
+      "neuron": [
+        25,
+        50,
+        100
+      ],
+      "resnet_dt": false,
+      "axis_neuron": 16,
+      "seed": 1,
+      "attn": 128,
+      "attn_layer": 0,
+      "attn_dotr": true,
+      "attn_mask": false,
+      "precision": "float64",
+      "_comment2": " that's all"
+    },
+    "fitting_net": {
+      "neuron": [
+        240,
+        240,
+        240
+      ],
+      "resnet_dt": true,
+      "precision": "float64",
+      "seed": 1,
+      "_comment3": " that's all"
+    },
+    "_comment4": " that's all"
+  },
+
+  "learning_rate": {
+    "type": "exp",
+    "decay_steps": 5000,
+    "start_lr": 0.001,
+    "stop_lr": 3.51e-8,
+    "_comment5": "that's all"
+  },
+
+  "loss": {
+    "type": "ener",
+    "start_pref_e": 0.02,
+    "limit_pref_e": 1,
+    "start_pref_f": 1000,
+    "limit_pref_f": 1,
+    "start_pref_v": 0,
+    "limit_pref_v": 0,
+    "_comment6": " that's all"
+  },
+
+  "training": {
+    "training_data": {
+      "systems": [
+        "/your_path/deepmd-test/20250601-graphene/data/CO2-NPT-c22-0000-0999/train",
+        "/your_path/deepmd-test/20250601-graphene/data/CO2-NVT-c14-0000-0999/train",
+        "/your_path/deepmd-test/20250601-graphene-/data/H2CO3-NPT-0500-0999/train",
+        "/your_path/deepmd-test/20250601-graphene-/data/H2CO3-NPT-n03584-0000-0499/train",
+        "/your_path/deepmd-test/20250601-graphene/data/H2CO3-NVT-c22-0000-0999/train",
+        "/your_path/deepmd-test/20250601-graphene/data/HCO3-NPT-0000-0999/train",
+        "/your_path/deepmd-test/20250601-graphene/data/HCO3-NVT-0000-0999/train",
+        "/your_path/deepmd-test/20250601-graphene/data/Meta-NPT-0000-0999/train",
+        "/your_path/deepmd-test/20250601-graphene/data/Meta-NVT-c02-0000-0999/train",
+        "/your_path/deepmd-test/20250601-graphene/data/Large-system-CO2/train",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-1-NVT-part1/train",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-1-NVT-part2/train",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-1-NPT/train",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-2-NPT/train",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-2-NVT-part1/train",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-2-NVT-part2/train",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-3-NPT/train",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-3-NVT-part1/train",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-3-NVT-part2/train",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-4-NPT/train",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-4-NVT-part1/train",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-4-NVT-part2/train"
+      ],
+      "batch_size": "auto",
+      "_comment": "that's all"
+    },
+    "validation_data": {
+      "systems": [
+        "/your_path/deepmd-test/20250601-graphene/data/CO2-NPT-c22-0000-0999/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/CO2-NVT-c14-0000-0999/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/H2CO3-NPT-0500-0999/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/H2CO3-NPT-n03584-0000-0499/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/H2CO3-NVT-c22-0000-0999/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/HCO3-NPT-0000-0999/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/HCO3-NVT-0000-0999/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/Meta-NPT-0000-0999/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/Meta-NVT-c02-0000-0999/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/Large-system-CO2/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-1-NVT-part1/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-1-NVT-part2/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-1-NPT/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-2-NPT/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-2-NVT-part1/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-2-NVT-part2/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-3-NPT/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-3-NVT-part1/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-3-NVT-part2/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-4-NPT/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-4-NVT-part1/valid",
+        "/your_path/deepmd-test/20250601-graphene/data/DT-4-NVT-part2/valid"      
+      ],
+      "batch_size": "auto",
+      "numb_btch": 3,
+      "_comment8": "that's all"
+    },
+    "numb_steps": 5000000,
+    "seed": 10,
+    "disp_file": "lcurve.out",
+    "disp_freq": 100,
+    "save_freq": 100000,
+    "max_ckpt_keep": 10,
+    "_comment9": "that's all"
+  },
+
+  "_comment10": "that's all"
+}
