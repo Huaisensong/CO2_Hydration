@@ -1,0 +1,39 @@
+units           real
+
+boundary        p p p
+
+atom_style      atomic
+
+neighbor        1.0 bin
+
+neigh_modify    every 10 delay 0 check no
+
+read_data       4.0.data
+
+pair_style      deepmd   20260121-500w-bulk-DT.pb
+
+pair_coeff      * *
+
+group   move    id      <>      4       192
+
+fix             1   move  nvt temp        298.15  298.15  1000
+
+timestep        1
+
+thermo          1000
+
+compute myT move temp 
+
+thermo_style   custom step temp etotal pe
+
+thermo_modify temp myT flush yes
+
+dump mydump1 all custom 100 coord.lammpstrj id type element x y z
+
+dump_modify mydump1 element C O H sort id 
+
+fix dp_plm all plumed plumedfile plumed.dat outfile output.plumed
+
+run 500000
+
+write_data CV3-0.5ns.data

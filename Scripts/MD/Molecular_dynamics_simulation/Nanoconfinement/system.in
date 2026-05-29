@@ -1,0 +1,43 @@
+# CO2
+
+units           real
+
+boundary        p p p
+
+atom_style      atomic
+
+neighbor        1.0 bin
+
+neigh_modify    every 10 delay 0 check no
+
+read_data		nanoconfinement.data
+
+pair_style	  deepmd   20260121-500w-nanofinement-DT.pb
+
+pair_coeff	  * *
+
+group	move	id		<>		481		699
+
+velocity      move 	create      	298.15   	23456789
+
+fix             1   move  nvt temp 		298.15	298.15 	1000  
+
+timestep        1
+
+thermo          1000
+
+compute  myT  move  temp 
+
+thermo_style   custom step temp   etotal   pe 
+
+thermo_modify temp myT flush yes
+
+dump mydump1 all custom  1000  coord.lammpstrj id type element x  y  z 
+
+dump_modify  mydump1 element C O H sort id
+
+restart        500000 tmp
+
+run    3000000
+
+write_data    case1-3ns.data

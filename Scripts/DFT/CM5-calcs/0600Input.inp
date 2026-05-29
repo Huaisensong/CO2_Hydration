@@ -1,0 +1,121 @@
+&FORCE_EVAL
+  &SUBSYS
+    &CELL
+      A [angstrom] 24.595     0.00000000     0.00000000
+      B [angstrom] 0.00000000    25.56    0.00000000
+      C [angstrom] 0.00000000     0.00000000    16.48
+      PERIODIC XYZ
+    &END CELL
+    &COORD
+      @include 0600.xyz
+    &END COORD
+    &KIND C
+        BASIS_SET DZVP-MOLOPT-SR-GTH
+        POTENTIAL GTH-PBE-q4
+    &END KIND
+    &KIND O
+        BASIS_SET TZV2P-GTH-q6
+        POTENTIAL GTH-PBE-q6
+    &END KIND
+    &KIND H
+        MASS 2.014101777
+        BASIS_SET TZV2P-GTH-q1
+        POTENTIAL GTH-PBE-q1
+    &END KIND
+  &END SUBSYS
+
+  &DFT
+    BASIS_SET_FILE_NAME GTH_BASIS_SETS
+    BASIS_SET_FILE_NAME BASIS_MOLOPT
+    POTENTIAL_FILE_NAME POTENTIAL
+    &XC # revPBE
+      &XC_FUNCTIONAL
+        &PBE 
+          PARAMETRIZATION REVPBE
+        &END
+      &END XC_FUNCTIONAL
+      &XC_GRID
+        XC_DERIV SPLINE2_SMOOTH
+      &END XC_GRID
+      &VDW_POTENTIAL
+        POTENTIAL_TYPE PAIR_POTENTIAL
+        &PAIR_POTENTIAL
+          TYPE DFTD3
+          R_CUTOFF 15
+          LONG_RANGE_CORRECTION TRUE
+          REFERENCE_FUNCTIONAL revPBE
+          PARAMETER_FILE_NAME dftd3.dat
+        &END PAIR_POTENTIAL
+      &END VDW_POTENTIAL
+    &END XC
+    &QS 
+      EPS_DEFAULT 1.0E-12
+      EPS_PGF_ORB 1.0E-14
+    &END QS
+    &SCF
+      MAX_SCF    100
+      EPS_SCF    5.0E-6
+      SCF_GUESS ATOMIC
+      ADDED_MOS 20
+      &DIAGONALIZATION
+        ALGORITHM STANDARD
+      &END DIAGONALIZATION
+      &MIXING
+        METHOD BROYDEN_MIXING
+        ALPHA   0.4
+        BETA    0.5
+        NBROYDEN  8
+      &END
+      &OUTER_SCF
+        MAX_SCF 100
+        EPS_SCF 5.0E-7
+      &END OUTER_SCF
+      &PRINT
+        &RESTART
+          ADD_LAST NUMERIC
+          &EACH
+            QS_SCF 0
+          &END EACH
+        &END RESTART
+      &END PRINT
+    &END SCF
+    &MGRID
+      NGRIDS 5
+      CUTOFF 1500
+    &END MGRID
+    &PRINT
+      &E_DENSITY_CUBE
+          FILENAME valence_density
+          STRIDE 1
+      &END E_DENSITY_CUBE
+      &HIRSHFELD ON
+          FILENAME ./hirshfeld
+          SELF_CONSISTENT T
+          SHAPE_FUNCTION DENSITY
+      &END HIRSHFELD
+      &MULLIKEN ON
+          FILENAME ./mulliken
+          &END MULLIKEN
+    &END PRINT
+  &END DFT
+&END FORCE_EVAL
+&MOTION
+    &PRINT
+        &TRAJECTORY
+            FILENAME structure.pdb
+            FORMAT PDB
+            &EACH
+                MD 1
+            &END EACH
+        &END TRAJECTORY
+    &END PRINT
+    &MD
+        STEPS 0
+    &END MD
+&END MOTION
+
+&GLOBAL
+    PRINT_LEVEL LOW
+    RUN_TYPE MD
+    PROJECT_NAME Charge
+&END GLOBAL
